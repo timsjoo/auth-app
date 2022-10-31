@@ -1,9 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
 import Layout from '../layout/layout';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 
 export default function Login() {
+
+  // google handlerr function
+  async function handleGoogleSignIn() {
+    signIn('google', { callbackUrl: "http://localhost/3000"});
+  }
+
   return (
     <div>
       <Layout>
@@ -37,7 +44,7 @@ export default function Login() {
               </button>
             </div>
               <div className="input-button">
-              <button type="submit">
+              <button type="submit" onClick={handleGoogleSignIn}>
                 Sign In with Google
               </button>
             </div>
