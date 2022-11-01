@@ -3,11 +3,29 @@ import Link from "next/link";
 import Layout from '../layout/layout';
 import { useFormik } from "formik";
 import { registerValidate } from "../lib/validate";
+import { useRouter } from "next/router";
+
 
 
 export default function Register() {
 
-  const formik = useFormik({
+  const router = useRouter();
+
+
+  async function onSubmit(values){
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(values)
+    }
+    await fetch('/api/auth/signup', options)
+      .then(res => res.json())
+      .then((data) => {
+        if(data) router.push('/')
+      })
+  }
+
+    const formik = useFormik({
     initialValues: {
       username: '',
       email: '',
@@ -17,10 +35,6 @@ export default function Register() {
     validate: registerValidate,
     onSubmit,
   })
-
-  async function onSubmit(values){
-    console.log(values);
-  }
 
   return (
     <Layout>

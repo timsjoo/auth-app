@@ -33,6 +33,6 @@ export default NextAuth({
       return result;
     }
   }),
-
-]
+],
+ secret: "Q/cqrXNsD7wh7oSIv7mFNF12dGrcuLQoCA+QGnQ0acI="
 })
