@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 
 export default function Home() {
 
@@ -44,7 +44,7 @@ const User = ({session}) => {
         </div>
         
         <div>
-          <button className="mt-5 px-10 py-1 rounded-sm bg-indigo-500 bg-gray-50">Sign Out</button>
+          <button className="mt-5 px-10 py-1 rounded-sm bg-indigo-500 bg-gray-50" onClick={signOut}>Sign Out</button>
         </div>
 
         <div className="flex justify-center">
